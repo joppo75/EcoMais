@@ -6,6 +6,7 @@ import Home from "../Screens/Home";
 import Calcular from "../Screens/Calcular";
 import Historico from "../Screens/Historico";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StyleSheet } from "react-native";
 
 
 const Tabs = () =>{
@@ -13,7 +14,8 @@ const Tabs = () =>{
     const nav = createBottomTabNavigator()
 
     return(
-        <nav.Navigator screenOptions={{
+        <nav.Navigator 
+        screenOptions={{
             activeTintColor:'#FFF',
             activeBackgroundColor:'#000',
             inactiveBackgroundColor:'#FFF',
@@ -21,13 +23,14 @@ const Tabs = () =>{
             headerShown:false,
             labelStyle:{
                 fontSize:30
-            }
+            },
+
             }} initialRouteName="Home">
             <nav.Screen name="Home" component={Home}
                 options={{
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                    <MaterialCommunityIcons name="home" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -35,7 +38,7 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Calcular',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                    <MaterialCommunityIcons name="calculator" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -43,7 +46,7 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Histórico',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                    <MaterialCommunityIcons name="clipboard-list-outline" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -51,7 +54,7 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Sair',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                    <MaterialCommunityIcons name="logout" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
