@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login from "../Screens/Login";
 import Cadastro from "../Screens/Cadastro";
 import Home from "../Screens/Home";
-import Tela2 from "../Screens/Tela2";
+import Calcular from "../Screens/Calcular";
 import Tela3 from "../Screens/Tela3";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -31,7 +31,7 @@ const Tabs = () =>{
                     ),
                 }}>
             </nav.Screen>
-            <nav.Screen name="Calcular" component={Tela2}
+            <nav.Screen name="Calcular" component={Calcular}
                 options={{
                     tabBarLabel: 'Calcular',
                     tabBarIcon: ({ color, size }) => (

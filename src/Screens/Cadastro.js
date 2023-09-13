@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#044929',
     },
     row: {
-
         flexDirection: 'row',
         position: 'relative',
         bottom: 100
