@@ -4,7 +4,7 @@ import Login from "../Screens/Login";
 import Cadastro from "../Screens/Cadastro";
 import Home from "../Screens/Home";
 import Calcular from "../Screens/Calcular";
-import Tela3 from "../Screens/Tela3";
+import Historico from "../Screens/Historico";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -39,7 +39,7 @@ const Tabs = () =>{
                     ),
                 }}>
             </nav.Screen>
-            <nav.Screen name="Histórico" component={Tela3}
+            <nav.Screen name="Histórico" component={Historico}
                 options={{
                     tabBarLabel: 'Histórico',
                     tabBarIcon: ({ color, size }) => (
@@ -47,7 +47,7 @@ const Tabs = () =>{
                     ),
                 }}>
             </nav.Screen>
-            <nav.Screen name="Sair" component={Tela3}
+            <nav.Screen name="Sair" component={Historico}
                 options={{
                     tabBarLabel: 'Sair',
                     tabBarIcon: ({ color, size }) => (
