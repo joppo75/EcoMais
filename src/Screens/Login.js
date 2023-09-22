@@ -19,10 +19,9 @@ export default props => {
                 </TouchableOpacity>
             </View>
 
-            <Button
-                title="Cadastre-se"
-                onPress={() => { props.navigation.navigate('Cadastro') }}>
-            </Button>
+            <TouchableOpacity style={styles.buttonLink} onPress={() => { props.navigation.navigate('Cadastro') }}>
+                    <Text style={styles.buttonlinkText}>Cadastar</Text>
+            </TouchableOpacity>
         </View>
 
     )
@@ -48,15 +47,28 @@ const styles = StyleSheet.create({
     button: {
         height: 40,
         alignItems: 'center',
-        backgroundColor: '#608EE7',
-        padding: 10,
+        backgroundColor: '#05B047',
+        padding: 8,
         borderRadius: 10,
         position: 'relative',
         top: 50
     },
     buttonText: {
         color: '#FFF',
-        fontSize: 20
+        fontSize: 22
+    },
+    buttonLink:{
+        position: 'relative',
+        top: 10,
+        textDecorationLine: "underline",
+        textDecorationStyle: "solid",
+        textDecorationColor: "#000",
+    },
+    buttonlinkText:{
+        color: '#FFF',
+        fontSize: 18,
+        textDecorationLine: "underline",
+        textDecorationStyle: "solid",
     }
 
 })

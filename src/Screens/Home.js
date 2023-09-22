@@ -1,15 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Perfil from "../Components/Perfil";
 
 export default () => {
 
     return (
         <View style={styles.container}>
 
-            <View style={styles.perf}>
-                
-            </View>
+           <Perfil nome="João"/>
 
+            <View style={styles.conteudo}>
+
+            
             <View style={styles.row}>
                 <View style={styles.quaCalc}>
                     <Text style={styles.texto}>Calcular</Text>
@@ -23,7 +25,7 @@ export default () => {
                     <Text style={styles.texto}>Histórico</Text>
                 </View>
             </View>
-
+            </View>
 
         </View>
     )
@@ -32,9 +34,12 @@ export default () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#FFF'
+    },
+    conteudo:{
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#FFF'
     },
     row: {
         flexDirection: 'row',
@@ -66,6 +71,7 @@ const styles = StyleSheet.create({
     },
     texto:{
         color: '#fff',
-        fontSize: 20
+        fontSize: 20,
+        fontWeight: '900'
     }
 })

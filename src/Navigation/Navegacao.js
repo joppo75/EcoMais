@@ -9,28 +9,28 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { StyleSheet } from "react-native";
 
 
-const Tabs = () =>{
+const Tabs = () => {
 
     const nav = createBottomTabNavigator()
 
-    return(
-        <nav.Navigator 
-        screenOptions={{
-            activeTintColor:'#FFF',
-            activeBackgroundColor:'#000',
-            inactiveBackgroundColor:'#FFF',
-            inactiveTintColor:'#000',
-            headerShown:false,
-            labelStyle:{
-                fontSize:30
-            },
+    return (
+        <nav.Navigator
+            screenOptions={{
+                activeTintColor: '#FFF',
+                activeBackgroundColor: '#000',
+                inactiveBackgroundColor: '#FFF',
+                inactiveTintColor: '#000',
+                headerShown: false,
+                labelStyle: {
+                    fontSize: 30
+                },
 
             }} initialRouteName="Home">
             <nav.Screen name="Home" component={Home}
                 options={{
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={35} />
+                        <MaterialCommunityIcons name="home" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -38,7 +38,7 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Calcular',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="calculator" color={color} size={35} />
+                        <MaterialCommunityIcons name="calculator" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -46,7 +46,7 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Histórico',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="clipboard-list-outline" color={color} size={35} />
+                        <MaterialCommunityIcons name="clipboard-list-outline" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
@@ -54,11 +54,11 @@ const Tabs = () =>{
                 options={{
                     tabBarLabel: 'Sair',
                     tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="logout" color={color} size={35} />
+                        <MaterialCommunityIcons name="logout" color={color} size={35} />
                     ),
                 }}>
             </nav.Screen>
-            
+
         </nav.Navigator>
     )
 
@@ -68,8 +68,8 @@ export default () => {
 
     const stack = createNativeStackNavigator()
 
-    return(
-        <stack.Navigator screenOptions={{headerShown:false}}>
+    return (
+        <stack.Navigator screenOptions={{ headerShown: false }}>
             <stack.Screen name="Login" component={Login}></stack.Screen>
             <stack.Screen name="Cadastro" component={Cadastro}></stack.Screen>
             <stack.Screen name="Tabs" component={Tabs}></stack.Screen>

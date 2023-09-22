@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
     button: {
         height: 40,
         alignItems: 'center',
-        backgroundColor: '#608EE7',
-        padding: 10,
+        backgroundColor: '#05B047',
+        padding: 8,
         borderRadius: 10,
         position: 'relative',
         top: 50
     },
     buttonText: {
         color: '#FFF',
-        fontSize: 20
+        fontSize: 22
     }
 })
