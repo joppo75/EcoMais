@@ -1,14 +1,18 @@
 import React from "react"
+import { TouchableOpacity } from "react-native"
 import { Image } from "react-native"
 import { StyleSheet } from "react-native"
 import { View, Text } from "react-native"
 
-export default function Perfil(props) {
+export default props => {
 
     return (
         <View style={styles.perf}>
             <Text style={styles.texto}>{props.nome}</Text>
-            <Image source={props.imagem} style={styles.img}/>
+            <TouchableOpacity>
+                <Image source={props.imagem} style={styles.img} />
+            </TouchableOpacity>
+
         </View>
     )
 
@@ -17,10 +21,11 @@ export default function Perfil(props) {
 const styles = StyleSheet.create({
     perf: {
         flexDirection: 'row',
-        marginTop: 50,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginRight: 10
+        marginTop: 50,
+        marginBottom: 10,
+        marginRight: 10,
     },
     img: {
         width: 65,

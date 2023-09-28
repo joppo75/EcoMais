@@ -5,8 +5,8 @@ import Cadastro from "../Screens/Cadastro";
 import Home from "../Screens/Home";
 import Calcular from "../Screens/Calcular";
 import Historico from "../Screens/Historico";
+import Editar from "../Screens/Editar";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StyleSheet } from "react-native";
 
 
 const Tabs = () => {
@@ -49,6 +49,13 @@ const Tabs = () => {
                         <MaterialCommunityIcons name="clipboard-list-outline" color={color} size={35} />
                     ),
                 }}>
+                <nav.Screen name="Perfil" component={Editar}
+                    options={{
+                        tabBarLabel: 'Perfil',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="clipboard-list-outline" color={color} size={35} />
+                        ),
+                    }}></nav.Screen>
             </nav.Screen>
             <nav.Screen name="Sair" component={Historico}
                 options={{
@@ -72,6 +79,7 @@ export default () => {
         <stack.Navigator screenOptions={{ headerShown: false }}>
             <stack.Screen name="Login" component={Login}></stack.Screen>
             <stack.Screen name="Cadastro" component={Cadastro}></stack.Screen>
+            <stack.Screen name="Editar" component={Editar}></stack.Screen>
             <stack.Screen name="Tabs" component={Tabs}></stack.Screen>
         </stack.Navigator>
     )

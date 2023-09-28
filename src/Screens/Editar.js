@@ -1,16 +1,19 @@
 import React from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import Input from "../Components/Input";
+import { StyleSheet } from "react-native";
+import { Image } from "react-native";
+import { Text } from "react-native";
 
 
-export default () => {
+export default props => {
 
     return (
         <View style={styles.container}>
 
             <View style={styles.row}>
-                <Image source={User} />
-                <Text style={styles.h1}>Cadastre-se</Text>
+            
+                <Text style={styles.h1}>Editar</Text>
             </View>
 
             <View style={styles.col}>

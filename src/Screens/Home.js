@@ -7,24 +7,22 @@ export default () => {
     return (
         <View style={styles.container}>
 
-           <Perfil nome="João"/>
+            <Perfil nome="João" />
 
             <View style={styles.conteudo}>
-
-            
-            <View style={styles.row}>
-                <View style={styles.quaCalc}>
-                    <Text style={styles.texto}>Calcular</Text>
+                <View style={styles.row}>
+                    <View style={styles.quaCalc}>
+                        <Text style={styles.texto}>Calcular</Text>
+                    </View>
+                    <View style={styles.quaInfo}>
+                        <Text style={styles.texto}>Informativos</Text>
+                    </View>
                 </View>
-                <View style={styles.quaInfo}>
-                    <Text style={styles.texto}>Informativos</Text>
+                <View style={styles.row}>
+                    <View style={styles.quaHis}>
+                        <Text style={styles.texto}>Histórico</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.row}>
-                <View style={styles.quaHis}>
-                    <Text style={styles.texto}>Histórico</Text>
-                </View>
-            </View>
             </View>
 
         </View>
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF'
     },
-    conteudo:{
+    conteudo: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#CDD100',
         marginTop: 10
     },
-    texto:{
+    texto: {
         color: '#fff',
         fontSize: 20,
         fontWeight: '900'

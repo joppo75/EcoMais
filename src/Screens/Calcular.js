@@ -1,29 +1,48 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import InputCH from "../Components/InputCH";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Perfil from "../Components/Perfil";
 
 export default () => {
-    return(
+    return (
         <View style={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.h1}>Calculo Gás carbônico automotivo</Text>
 
-                <Text style={styles.texto}>Informe o combustivel</Text>
-                <InputCH nome="selecionar"/>
+            <Perfil nome="João" />
 
-                <Text style={styles.texto}>Quantidade de litros abastecidos:</Text>
-                <InputCH/>
+            <View style={styles.conteudo}>
+            
+                <View style={styles.titulo}>
+                    <MaterialCommunityIcons name="calculator-variant" size={35} color={'#fff'} />
+                    <Text style={styles.h1}>Calculo Gás carbônico</Text>
+                </View>
 
-                <Text style={styles.texto}>Quantidade de KM rodado:</Text>
-                <InputCH/>
+                <Text style={styles.texto}>
+                    <MaterialCommunityIcons name="fuel" size={23} />Informe o combustivel
+                </Text>
+                <InputCH nome="selecionar" />
+
+                <Text style={styles.texto}>
+                    <MaterialCommunityIcons name="application-edit" size={23} />Quantidade de litros abastecidos:
+                </Text>
+                <InputCH />
+
+                <Text style={styles.texto}>
+                    <MaterialCommunityIcons name="car-back" size={23} />Quantidade de KM rodado:
+                </Text>
+                <InputCH />
 
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.texto}>Calculo gasto</Text>
-                <InputCH nome="selecionar"/>
+                <Text style={styles.texto}>
+                    <MaterialCommunityIcons name="calculator-variant-outline" size={23} />Calculo gasto
+                </Text>
+                <InputCH />
             </View>
+
+
         </View>
     )
 }
@@ -31,40 +50,47 @@ export default () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#FFF',
     },
-    h1: {
-        fontSize: 25,
-        color: '#FFF',
-        marginBottom: 20
-    },
-    texto:{
-        fontSize: 20,
-        color: '#FFF',
-        marginTop:5,
-        marginBottom: 1,
-    },
-    card:{
-        width: 350,
-        height: 500,
+    conteudo: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+
         backgroundColor: '#044929',
         borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
+
     },
+    h1: {
+        fontSize: 27,
+        color: '#FFF',
+    },
+    texto: {
+        fontSize: 18,
+        color: '#FFF',
+        marginTop: 5,
+        marginBottom: 1,
+    },
+
     button: {
+        width: '80%',
         height: 40,
         alignItems: 'center',
-        backgroundColor: '#608EE7',
+        backgroundColor: '#05B047',
         padding: 10,
         borderRadius: 10,
-        marginTop: 10,
-        marginBottom:10
+        marginTop: 25,
+        marginBottom: 25
     },
     buttonText: {
         color: '#FFF',
         fontSize: 20
-    }
+    },
+    titulo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 50
+    },
+
 })
