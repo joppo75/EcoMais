@@ -1,5 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import Input from "../Components/Input";
+import { Text, View, StyleSheet, TouchableOpacity, Image, TextInput } from "react-native";
 import Arvore from "../../assets/Imagens/login.png";
 
 export default props => {
@@ -12,15 +11,25 @@ export default props => {
             <Image source={Arvore} style={styles.img} />
 
             <View style={styles.col}>
-                <Input nome="Username" />
-                <Input nome="PassWord" />
+
+                <TextInput
+                    onChangeText={text => setUsername(text)}
+                    placeholder="Username"
+                    style={styles.input} />
+
+                <TextInput
+                    onChangeText={text => setPassword(text)}
+                    placeholder="Password"
+                    style={styles.input} />
+
                 <TouchableOpacity style={styles.button} onPress={() => { props.navigation.navigate('Tabs') }}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
+
             </View>
 
             <TouchableOpacity style={styles.buttonLink} onPress={() => { props.navigation.navigate('Cadastro') }}>
-                    <Text style={styles.buttonlinkText}>Cadastar</Text>
+                <Text style={styles.buttonlinkText}>Cadastar</Text>
             </TouchableOpacity>
         </View>
 
@@ -44,6 +53,16 @@ const styles = StyleSheet.create({
         position: 'relative',
         bottom: 80
     },
+
+    input: {
+        width: '100%',
+        height: 45,
+        backgroundColor: "#FFF",
+        borderRadius: 10,
+        marginTop: 5,
+        padding: 10
+    },
+
     button: {
         height: 40,
         alignItems: 'center',
@@ -57,14 +76,14 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 22
     },
-    buttonLink:{
+    buttonLink: {
         position: 'relative',
         top: 10,
         textDecorationLine: "underline",
         textDecorationStyle: "solid",
         textDecorationColor: "#000",
     },
-    buttonlinkText:{
+    buttonlinkText: {
         color: '#FFF',
         fontSize: 18,
         textDecorationLine: "underline",

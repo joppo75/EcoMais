@@ -1,12 +1,18 @@
-import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
-import { StyleSheet } from "react-native";
-import { Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { TextInput, TouchableOpacity, View, Text, StyleSheet} from "react-native";
 import Perfil from "../Components/Perfil";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useRoute } from "@react-navigation/native";
 
 
 export default props => {
+
+    //variaveis de estado
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
 
     return (
 
@@ -19,16 +25,32 @@ export default props => {
             <View style={styles.conteudo}>
 
                 <View style={styles.titulo}>
-                    <MaterialCommunityIcons name="account-wrench" size={35} color={'#fff'} />
-                    <Text style={styles.h1}>Editar</Text>
+                    <MaterialCommunityIcons name="account-wrench" size={45} color={'#fff'} />
+                    <Text style={styles.h1}>Editar Usuário</Text>
                 </View>
 
                 <View style={styles.group}>
-                    <TextInput style={styles.input} placeholder="Nome"/>
-                    <TextInput style={styles.input} placeholder="E-mail"/>
-                    <TextInput style={styles.input} placeholder="Foto"/>
+                    <TextInput
+                        onChangeText={text => setName(text)}
+                        placeholder="Nome"
+                        style={styles.input} />
+
+                    <TextInput
+                        onChangeText={text => setEmail(text)}
+                        placeholder="E-mail"
+                        style={styles.input} />
+
+                    <TextInput
+                        onChangeText={text => setUsername(text)}
+                        placeholder="Username"
+                        style={styles.input} />
+
+                    <TextInput
+                        onChangeText={text => setPassword(text)}
+                        placeholder="Password"
+                        style={styles.input} />
                 </View>
-               
+
 
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Editar</Text>
@@ -43,7 +65,7 @@ export default props => {
 }
 
 const styles = StyleSheet.create({
-   
+
     container: {
         flex: 1,
         backgroundColor: '#FFF',
@@ -56,7 +78,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     h1: {
-        fontSize: 27,
+        fontSize: 30,
         color: '#FFF',
     },
     texto: {
@@ -65,6 +87,16 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 1,
     },
+
+    input: {
+        width: '100%',
+        height: 45,
+        backgroundColor: "#FFF",
+        borderRadius: 10,
+        marginTop: 5,
+        padding: 10
+    },
+
     button: {
         width: '80%',
         height: 40,
@@ -85,7 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 50
     },
-    group:{
+    group: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',

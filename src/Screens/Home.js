@@ -1,6 +1,8 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Perfil from "../Components/Perfil";
+import { Text } from "react-native";
+
 
 export default (props) => {
 
@@ -11,23 +13,24 @@ export default (props) => {
                 <Perfil nome="João" />
             </TouchableOpacity>
 
+
             <View style={styles.conteudo}>
                 <View style={styles.row}>
                     <View style={styles.quaCalc}>
                         <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Calcular') }}>
-                            Calcular
+                            <Text>Calcular</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.quaInfo}>
                         <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Informativo') }}>
-                            Informativos
+                            <Text>Informativos</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.row}>
                     <View style={styles.quaHis}>
                         <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Historico') }}>
-                            Histórico
+                            <Text>Histórico</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -79,5 +82,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: '900'
-    }
+    },
+
+    
 })

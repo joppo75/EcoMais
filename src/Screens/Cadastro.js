@@ -1,8 +1,48 @@
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import User from '../../assets/Imagens/user.png';
-import Input from "../Components/Input";
+import { TextInput } from "react-native";
+import api from "../services/api";
+import { useState } from "react";
+import { Alert } from "react-native";
 
 export default () => {
+
+    //variaveis de estado
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    //criando funcção singIn = aguarda o retorno
+    singIn = async() => {
+
+        api.post('/api/users',{
+            name, email, username, password
+        })
+
+        .then(async(res) => {
+            Alert.alert("Sucesso!","Usuário cadastrado com sucesso")
+        })
+
+        .catch (function (error) {
+  
+            // let resposta = error.response.data.errors;
+            // var erro = "";
+      
+            // Object.keys(resposta).forEach(function(index){
+      
+            //   erro += " " + `${resposta[index]} \n`;
+      
+            // });
+            
+            Alert.alert("Erro", error);
+      
+        });
+    }
+
+   
+
+
     return (
         <View style={styles.container}>
 
@@ -12,12 +52,29 @@ export default () => {
             </View>
 
             <View style={styles.col}>
-                <Input nome="Nome" />
-                <Input nome="E-mail" />
-                <Input nome="Username" />
-                <Input nome="Password" />
-                <Input nome="Foto" />
-                <TouchableOpacity style={styles.button}>
+                
+                <TextInput 
+                    onChangeText={text=>setName(text)} 
+                    placeholder="Nome" 
+                    style={styles.input}/>
+
+                <TextInput 
+                    onChangeText={text=>setEmail(text)} 
+                    placeholder="E-mail" 
+                    style={styles.input}/>
+
+                <TextInput 
+                    onChangeText={text=>setUsername(text)} 
+                    placeholder="Username" 
+                    style={styles.input}/>
+
+                <TextInput 
+                    onChangeText={text=>setPassword(text)} 
+                    placeholder="Password" 
+                    style={styles.input}/>
+
+
+                <TouchableOpacity style={styles.button} onPress={this.singIn}>
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>
@@ -51,6 +108,16 @@ const styles = StyleSheet.create({
         color: '#FFF',
         marginLeft: 10
     },
+
+    input: {
+        width: '100%',
+        height: 45,
+        backgroundColor: "#FFF",
+        borderRadius: 10,
+        marginTop: 5,
+        padding: 10
+    },
+
     button: {
         height: 40,
         alignItems: 'center',
