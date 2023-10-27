@@ -5,7 +5,7 @@ import api from "../services/api";
 import { useState } from "react";
 import { Alert } from "react-native";
 
-export default () => {
+export default props => {
 
     //variaveis de estado
     const [name, setName] = useState('');
@@ -22,6 +22,7 @@ export default () => {
 
         .then(async(res) => {
             Alert.alert("Sucesso!","Usuário cadastrado com sucesso")
+            props.navigation.navigate("Login");
         })
 
         .catch (function (error) {
@@ -71,6 +72,7 @@ export default () => {
                 <TextInput 
                     onChangeText={text=>setPassword(text)} 
                     placeholder="Password" 
+                    secureTextEntry={true}
                     style={styles.input}/>
 
 

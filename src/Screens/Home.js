@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Perfil from "../Components/Perfil";
 import { Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
 export default (props) => {
@@ -10,27 +12,27 @@ export default (props) => {
         <View style={styles.container}>
 
             <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
-                <Perfil nome="João" />
+                <Perfil />
             </TouchableOpacity>
 
 
             <View style={styles.conteudo}>
                 <View style={styles.row}>
                     <View style={styles.quaCalc}>
-                        <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Calcular') }}>
-                            <Text>Calcular</Text>
+                        <TouchableOpacity onPress={() => { props.navigation.navigate('Calcular') }}>
+                            <Text style={styles.texto}>Calcular</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.quaInfo}>
                         <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Informativo') }}>
-                            <Text>Informativos</Text>
+                            <Text style={styles.texto}>Informativos</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.row}>
                     <View style={styles.quaHis}>
                         <TouchableOpacity style={styles.texto} onPress={() => { props.navigation.navigate('Historico') }}>
-                            <Text>Histórico</Text>
+                            <Text style={styles.texto}>Histórico</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -1,14 +1,33 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { TouchableOpacity } from "react-native"
 import { Image } from "react-native"
 import { StyleSheet } from "react-native"
 import { View, Text } from "react-native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default props => {
 
+    const [usuario, setUsuario] = useState('');
+
+
+    useEffect(() => {
+        const obterUsuario = async () => {
+          try {
+            const usuarioSalvo = await AsyncStorage.getItem('usuario');
+            if (usuarioSalvo) {
+              setUsuario(JSON.parse(usuarioSalvo));
+            }
+          } catch (error) {
+            console.error('Erro ao obter o usuário do AsyncStorage:', error);
+          }
+        };
+    
+        obterUsuario();
+      }, []);
+
     return (
         <View style={styles.perf}>
-            <Text style={styles.texto}>{props.nome}</Text>
+            <Text style={styles.texto}>{usuario.name}</Text>
             <Image source={props.imagem} style={styles.img} />
         </View>
     )

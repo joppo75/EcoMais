@@ -71,6 +71,7 @@ export default () => {
             <stack.Screen name="Calcular" component={Calcular}></stack.Screen>
             <stack.Screen name="Historico" component={Historico}></stack.Screen>
             <stack.Screen name="Informativo" component={Informativos}></stack.Screen>
+            <stack.Screen name="Home" component={Home}></stack.Screen>
             <stack.Screen name="Tabs" component={Tabs}></stack.Screen>
         </stack.Navigator>
     )

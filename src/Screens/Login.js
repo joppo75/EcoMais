@@ -1,10 +1,49 @@
 import { Text, View, StyleSheet, TouchableOpacity, Image, TextInput } from "react-native";
 import Arvore from "../../assets/Imagens/login.png";
+import { useState } from "react";
+import api from "../services/api";
+import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default props => {
-    // <Text>Loginsss</Text>
-    // <Button title="Entrar" onPress={()=>{props.navigation.navigate('Tabs')}}></Button>
-    // <Button title="Cadastro" onPress={()=>{props.navigation.navigate('Cadastro')}}></Button>
+   
+    //variaveis de estado
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    //função entrar
+    singIn = async() => {
+
+        api.post('/api/login',{
+            username, password
+        })
+
+        .then(async(res) => {
+            await AsyncStorage.setItem('token', res.data.token);
+            await AsyncStorage.setItem('usuario', JSON.stringify(res.data.usuario));
+            props.navigation.navigate("Tabs");
+
+        })
+
+        .catch (function (error) {
+  
+            // let resposta = error.response.data.errors;
+            // var erro = "";
+      
+            // Object.keys(resposta).forEach(function(index){
+      
+            //   erro += " " + `${resposta[index]} \n`;
+      
+            // });
+            
+            Alert.alert("Erro", error);
+      
+        });
+    }
+
+
+
     return (
         <View style={styles.container}>
 
@@ -13,16 +52,17 @@ export default props => {
             <View style={styles.col}>
 
                 <TextInput
-                    onChangeText={text => setUsername(text)}
+                    onChangeText={text=>setUsername(text)}
                     placeholder="Username"
                     style={styles.input} />
 
                 <TextInput
-                    onChangeText={text => setPassword(text)}
+                    onChangeText={text=>setPassword(text)}
                     placeholder="Password"
+                    secureTextEntry={true} 
                     style={styles.input} />
 
-                <TouchableOpacity style={styles.button} onPress={() => { props.navigation.navigate('Tabs') }}>
+                <TouchableOpacity style={styles.button} onPress={this.singIn}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
 
