@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, TouchableOpacity, View, Text, StyleSheet} from "react-native";
+import { TextInput, TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import Perfil from "../Components/Perfil";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -15,18 +15,18 @@ export default () => {
 
     useEffect(() => {
         const obterUsuario = async () => {
-          try {
-            const usuarioSalvo = await AsyncStorage.getItem('usuario');
-            if (usuarioSalvo) {
-              setUsuario(JSON.parse(usuarioSalvo));
+            try {
+                const usuarioSalvo = await AsyncStorage.getItem('usuario');
+                if (usuarioSalvo) {
+                    setUsuario(JSON.parse(usuarioSalvo));
+                }
+            } catch (error) {
+                console.error('Erro ao obter o usuário:', error);
             }
-          } catch (error) {
-            console.error('Erro ao obter o usuário:', error);
-          }
         };
-    
+
         obterUsuario();
-      }, []);
+    }, []);
 
 
     return (
@@ -34,7 +34,9 @@ export default () => {
         <View style={styles.container}>
 
 
-            <Perfil nome="João" />
+            <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
+                <Perfil />
+            </TouchableOpacity>
 
 
             <View style={styles.conteudo}>

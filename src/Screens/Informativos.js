@@ -1,19 +1,23 @@
-import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, TextInput, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native";
 import Perfil from "../Components/Perfil";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import api from "../services/api";
+import Informativo from "../Components/Informativo";
 
 
 export default props => {
+
 
     return (
 
         <View style={styles.container}>
 
-
-            <Perfil nome="João" />
+            <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
+                <Perfil />
+            </TouchableOpacity>
 
             <View style={styles.conteudo}>
 
@@ -22,7 +26,7 @@ export default props => {
                     <Text style={styles.h1}>Informativos</Text>
                 </View>
 
-                <Text>INFORMATIVO AQUI</Text>
+                <Informativo/>
 
             </View>
 
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     h1: {
-        fontSize: 27,
+        fontSize: 35,
         color: '#FFF',
     },
     texto: {
@@ -73,7 +77,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 50
+        marginBottom: 50,
+        marginTop: 80
     },
     group: {
         width: '100%',

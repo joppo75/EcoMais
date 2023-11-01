@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import InputCH from "../Components/InputCH";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Perfil from "../Components/Perfil";
@@ -9,7 +9,7 @@ export default (props) => {
         <View style={styles.container}>
 
             <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
-                <Perfil nome="João" />
+                <Perfil />
             </TouchableOpacity>
 
             <View style={styles.conteudo}>
@@ -19,11 +19,9 @@ export default (props) => {
                     <Text style={styles.h1}>Calculo Gás carbônico</Text>
                 </View>
 
-                
-
-                {/* <Text style={styles.texto}>
+                <Text style={styles.texto}>
                     <MaterialCommunityIcons name="fuel" size={23} />Informe o combustivel
-                </Text> */}
+                </Text>
                 <InputCH nome="selecionar" />
 
                 <Text style={styles.texto}>

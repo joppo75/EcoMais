@@ -14,9 +14,9 @@ export default props => {
 
         <View style={styles.container}>
 
-          
+
             <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
-                <Perfil nome="João"/>
+                <Perfil />
             </TouchableOpacity>
 
             <View style={styles.conteudo}>
