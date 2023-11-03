@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import InputCH from "../Components/InputCH";
+
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from "react-native";
@@ -27,10 +27,7 @@ export default props => {
                 </View>
 
                 <View style={styles.card}>
-                    <InputCH />
-                    <InputCH />
-                    <InputCH />
-                    <InputCH />
+
 
                 </View>
 
