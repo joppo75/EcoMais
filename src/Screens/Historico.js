@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { TouchableOpacity } from "react-native";
 import Perfil from "../Components/Perfil";
 import { Image } from "react-native";
+import Historic from "../Components/Historic";
 
 export default props => {
 
@@ -27,9 +28,9 @@ export default props => {
                 </View>
 
                 <View style={styles.card}>
-
-
+                    <Historic />
                 </View>
+
 
 
                 <View style={styles.plus}>
@@ -52,14 +53,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
     },
+
     conteudo: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-
         backgroundColor: '#044929',
         borderRadius: 10,
     },
+
     card: {
         width: '100%',
         backgroundColor: '#044929',
@@ -67,10 +69,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10
     },
+
     h1: {
         fontSize: 27,
         color: '#FFF',
     },
+
     texto: {
         fontSize: 18,
         color: '#FFF',
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 50
+        marginBottom: 50,
     },
     plus: {
         width: '75%',

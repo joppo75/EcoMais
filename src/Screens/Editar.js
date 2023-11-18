@@ -34,7 +34,7 @@ export default () => {
         <View style={styles.container}>
 
 
-            <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
+            <TouchableOpacity>
                 <Perfil />
             </TouchableOpacity>
 

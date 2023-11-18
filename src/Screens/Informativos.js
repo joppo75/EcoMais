@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
     },
+
     conteudo: {
         flex: 1,
         alignItems: 'center',
@@ -49,16 +50,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#044929',
         borderRadius: 10,
     },
+
     h1: {
         fontSize: 35,
         color: '#FFF',
     },
+
     texto: {
         fontSize: 18,
         color: '#FFF',
         marginTop: 5,
         marginBottom: 1,
     },
+
     button: {
         width: '80%',
         height: 40,
@@ -69,10 +73,12 @@ const styles = StyleSheet.create({
         marginTop: 25,
         marginBottom: 25
     },
+
     buttonText: {
         color: '#FFF',
         fontSize: 20
     },
+
     titulo: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -80,12 +86,14 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         marginTop: 80
     },
+
     group: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
 
     },
+    
     input: {
         width: '80%',
         height: 45,

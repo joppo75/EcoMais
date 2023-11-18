@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../services/api";
 import { FlatList } from "react-native";
 import { View } from "react-native";

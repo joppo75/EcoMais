@@ -7,7 +7,7 @@ import api from "../services/api";
 
 export default (props) => {
 
-    const [selectinfo, setSelectInfo] = useState('');
+    const [selectinfo, setSelectInfo] = useState(1);
     const [litros, setLitros] = useState('');
     const [km, setKm] = useState('');
     const [calcular, setCalcular] = useState('');
@@ -31,12 +31,13 @@ export default (props) => {
         }
 
         api.post('/api/gasCarbonicos',{
-            selectinfo, litros, km, calcular
+            id_combustivels: selectinfo, qtd_listros: litros, qtd_km: km, resultado: calcular
         })
 
         .then(async(res) => {
             //Alert.alert("Sucesso!","Calculo cadastrado com sucesso")
             console.log(selectinfo, litros, km, calcular)
+            console.log(res.data)
         })
 
         .catch (function (error) {
