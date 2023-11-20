@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Perfil from "../Components/Perfil";
 import { Text } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import Arvore from "../../assets/Imagens/login.png";
+import { Image } from "react-native";
 
 
 export default (props) => {
@@ -37,7 +37,7 @@ export default (props) => {
                     </View>
                 </View>
             </View>
-
+            <Image source={Arvore} style={styles.img} />
         </View>
     )
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, Alert } from "react-native";
 import Perfil from "../Components/Perfil";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import api from "../services/api";
 
 
 export default () => {
@@ -10,7 +11,6 @@ export default () => {
     //variaveis de estado
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [usuario, setUsuario] = useState('');
 
     useEffect(() => {
@@ -27,6 +27,36 @@ export default () => {
 
         obterUsuario();
     }, []);
+
+    //função para editar
+    singIn = async() => {
+
+        const id = usuario.id
+
+        api.put(`/api/users/${id}`,{
+            name, email
+        })
+
+        .then(async(res) => {
+           
+            Alert.alert("Sucesso!","Usuário alterado com sucesso")
+        })
+
+        .catch (function (error) {
+  
+            let resposta = error.response.data.errors;
+            var erro = "";
+            
+            Object.keys(resposta).forEach(function(index){
+      
+              erro += " " + `${resposta[index]} \n`;
+      
+            });
+
+            Alert.alert("Erro", erro);
+      
+        });
+    }
 
 
     return (
@@ -49,26 +79,20 @@ export default () => {
                 <View style={styles.group}>
                     <TextInput
                         defaultValue={usuario.name}
-                        onChangeText={text => setName(text)}
+                        onChangeText={text=>setName(text)}
                         placeholder="Nome"
                         style={styles.input} />
 
                     <TextInput
                         defaultValue={usuario.email}
-                        onChangeText={text => setEmail(text)}
+                        onChangeText={text=>setEmail(text)}
                         placeholder="E-mail"
-                        style={styles.input} />
-
-                    <TextInput
-                        defaultValue={usuario.username}
-                        onChangeText={text => setUsername(text)}
-                        placeholder="Username"
                         style={styles.input} />
 
                 </View>
 
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={this.singIn}>
                     <Text style={styles.buttonText}>Editar</Text>
                 </TouchableOpacity>
 

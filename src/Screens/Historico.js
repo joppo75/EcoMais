@@ -1,20 +1,53 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
-
+import React, { useCallback, useEffect, useState } from "react";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from "react-native";
 import Perfil from "../Components/Perfil";
-import { Image } from "react-native";
-import Historic from "../Components/Historic";
+import api from "../services/api";
 
 export default props => {
 
+    const [historico, setHistorico] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+            setTimeout(resolve, timeout * 1000);
+        });
+    };
+
+    const recarregar = useCallback(async () => {
+        
+        setRefreshing(true);
+
+        try {
+            const response = await api.get('/api/gasCarbonicos');
+            setHistorico(response.data.data);
+
+        } catch (error) {
+            console.error('Erro ao carregar dados:', error);
+        }
+
+        setRefreshing(false);
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api.get('/api/gasCarbonicos');
+                setHistorico(response.data.data);
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+            }
+        };
+
+        fetchData(); 
+
+    }, [recarregar]);
+
     return (
 
-
         <View style={styles.container}>
-
 
             <TouchableOpacity onPress={() => { props.navigation.navigate('Editar') }}>
                 <Perfil />
@@ -27,23 +60,33 @@ export default props => {
                     <Text style={styles.h1}>Histórico</Text>
                 </View>
 
-                <View style={styles.card}>
-                    <Historic />
-                </View>
 
-
+                <FlatList
+                    data={historico}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={recarregar}
+                        />
+                    }
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => (
+                        <View>
+                            <View style={styles.conteudo_historico}>
+                                <Text style={styles.historic}>{item.resultado}</Text>
+                            </View>
+                        </View>
+                    )}
+                />
 
                 <View style={styles.plus}>
                     <TouchableOpacity onPress={() => { props.navigation.navigate('Calcular') }}>
                         <MaterialCommunityIcons name="clipboard-plus" size={35} color={'#fff'} />
                     </TouchableOpacity>
                 </View>
-
             </View>
 
-
         </View>
-
     );
 }
 
@@ -86,6 +129,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 50,
         marginBottom: 50,
     },
     plus: {
@@ -96,6 +140,23 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
 
+    },
+
+
+    conteudo_historico: {
+        backgroundColor: '#fff',
+        width: 300,
+        height: 50,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 5
+    },
+
+    historic: {
+        fontSize: 20,
+        fontWeight: "bold"
     }
+
 
 })

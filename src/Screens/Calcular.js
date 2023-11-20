@@ -12,50 +12,67 @@ export default (props) => {
     const [km, setKm] = useState('');
     const [calcular, setCalcular] = useState('');
 
+    function calcular_gas() {
 
-    singIn = async() => {
+        if (selectinfo && litros && km) {
 
-        let valor = 0;
-        let combust = 2.3;
-        let combustDiesel = 2.7;
+            let valor = 0;
+            let combust = 2.3;
+            let combustDiesel = 2.7;
 
-        if(selectinfo === 1 || selectinfo === 2){
+            if (selectinfo === 1 || selectinfo === 2) {
+                valor = (parseFloat(litros) * combust)
+                setCalcular(valor + "Kg CO2")
 
-            valor = (parseFloat(litros) * combust)
-            setCalcular(valor)
+            }
+            else {
+                valor = (parseFloat(litros) * combustDiesel)
+                setCalcular(valor + "Kg CO2")
+            }
         }
         else {
-
-            valor = (parseFloat(litros) * combustDiesel)
-            setCalcular(valor)
+            Alert.alert('ATENÇÃO!', 'Por favor preencha as informações!')
         }
 
-        api.post('/api/gasCarbonicos',{
-            id_combustivels: selectinfo, qtd_listros: litros, qtd_km: km, resultado: calcular
-        })
 
-        .then(async(res) => {
-            //Alert.alert("Sucesso!","Calculo cadastrado com sucesso")
-            console.log(selectinfo, litros, km, calcular)
-            console.log(res.data)
-        })
-
-        .catch (function (error) {
-  
-            // let resposta = error.response.data.errors;
-            // var erro = "";
-      
-            // Object.keys(resposta).forEach(function(index){
-      
-            //   erro += " " + `${resposta[index]} \n`;
-      
-            // });
-            
-            Alert.alert("Erro", error);
-      
-        });
     }
-   
+
+
+    singIn = async () => {
+
+        if (selectinfo && litros && km && calcular) {
+            api.post('/api/gasCarbonicos', {
+                id_combustivels: selectinfo, qtd_listros: litros, qtd_km: km, resultado: calcular
+            })
+
+                .then(async (res) => {
+
+                    setCalcular('');
+
+                    Alert.alert("Sucesso!", "Calculo cadastrado com sucesso");
+                })
+
+
+                .catch(function (error) {
+
+                    let resposta = error.response.data.errors;
+                    var erro = "";
+
+                    Object.keys(resposta).forEach(function (index) {
+
+                        erro += " " + `${resposta[index]} \n`;
+
+                    });
+
+                    Alert.alert("Erro", error);
+
+                });
+        }
+        else {
+            Alert.alert('ATENÇÃO!', 'Por favor preencha as informações acima!')
+        }
+    }
+
     return (
         <View style={styles.container}>
 
@@ -76,7 +93,7 @@ export default (props) => {
                         selectedValue={selectinfo}
                         onValueChange={(itemValue, itemIndex) => setSelectInfo(itemValue)}
                     >
-                        <Picker.Item style={styles.item}  label="Gasolina" value={1} />
+                        <Picker.Item style={styles.item} label="Gasolina" value={1} />
                         <Picker.Item style={styles.item} label="Etanol" value={2} />
                         <Picker.Item style={styles.item} label="Diesel" value={3} />
                     </Picker>
@@ -88,19 +105,19 @@ export default (props) => {
                     <MaterialCommunityIcons name="application-edit" size={23} />Quantidade de litros abastecidos:
                 </Text>
                 <TextInput
-                    onChangeText={text=>setLitros(text)} 
-                    style={styles.input} 
+                    onChangeText={text => setLitros(text)}
+                    style={styles.input}
                 />
 
                 <Text style={styles.texto}>
                     <MaterialCommunityIcons name="car-back" size={23} />Quantidade de KM rodado:
                 </Text>
                 <TextInput
-                    onChangeText={text=>setKm(text)} 
-                    style={styles.input} 
+                    onChangeText={text => setKm(text)}
+                    style={styles.input}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={this.singIn}>
+                <TouchableOpacity style={styles.button_calcular} onPress={calcular_gas}>
                     <Text style={styles.buttonText}>Calcular</Text>
                 </TouchableOpacity>
 
@@ -108,11 +125,14 @@ export default (props) => {
                     <MaterialCommunityIcons name="calculator-variant-outline" size={23} />Calculo gasto
                 </Text>
                 <Text style={styles.input} >
-                    {calcular + "Kg CO2"} 
+                    {calcular}
                 </Text>
-                   
-                    
-                
+
+                <TouchableOpacity style={styles.button_salvar} onPress={this.singIn}>
+                    <Text style={styles.buttonText}>Salvar</Text>
+                </TouchableOpacity>
+
+
             </View>
 
 
@@ -147,16 +167,16 @@ const styles = StyleSheet.create({
         marginBottom: 3,
     },
 
-    picker:{
+    picker: {
         fontSize: 18,
         color: '#000',
     },
 
-    item:{
+    item: {
         color: '#05B047',
     },
 
-    inputPicker:{
+    inputPicker: {
         width: '80%',
         height: 45,
         backgroundColor: "#FFF",
@@ -173,7 +193,18 @@ const styles = StyleSheet.create({
         padding: 10
     },
 
-    button: {
+    button_calcular: {
+        width: '80%',
+        height: 40,
+        alignItems: 'center',
+        backgroundColor: '#14ACB2',
+        padding: 10,
+        borderRadius: 10,
+        marginTop: 25,
+        marginBottom: 25
+    },
+
+    button_salvar: {
         width: '80%',
         height: 40,
         alignItems: 'center',

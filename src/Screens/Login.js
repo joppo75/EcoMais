@@ -27,18 +27,22 @@ export default props => {
         })
 
         .catch (function (error) {
-  
-            // let resposta = error.response.data.errors;
-            // var erro = "";
-      
-            // Object.keys(resposta).forEach(function(index){
-      
-            //   erro += " " + `${resposta[index]} \n`;
-      
-            // });
             
-            Alert.alert("Erro", error);
-      
+            if (error.response.data.errors){
+                let resposta = error.response.data.errors;
+                var erro = "";
+                
+                Object.keys(resposta).forEach(function(index){
+          
+                  erro += " " + `${resposta[index]} \n`;
+          
+                });
+                Alert.alert("Erro", erro);
+            }
+            else{
+                Alert.alert("Erro", "Usuário não encontrado!")
+            }
+
         });
     }
 

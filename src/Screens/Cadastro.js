@@ -27,16 +27,16 @@ export default props => {
 
         .catch (function (error) {
   
-            // let resposta = error.response.data.errors;
-            // var erro = "";
-      
-            // Object.keys(resposta).forEach(function(index){
-      
-            //   erro += " " + `${resposta[index]} \n`;
-      
-            // });
+            let resposta = error.response.data.errors;
+            var erro = "";
             
-            Alert.alert("Erro", error);
+            Object.keys(resposta).forEach(function(index){
+      
+              erro += " " + `${resposta[index]} \n`;
+      
+            });
+
+            Alert.alert("Erro", erro);
       
         });
     }
