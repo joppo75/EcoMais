@@ -105,6 +105,7 @@ export default (props) => {
                     <MaterialCommunityIcons name="application-edit" size={23} />Quantidade de litros abastecidos:
                 </Text>
                 <TextInput
+                    inputMode="numeric"
                     onChangeText={text => setLitros(text)}
                     style={styles.input}
                 />
@@ -113,6 +114,7 @@ export default (props) => {
                     <MaterialCommunityIcons name="car-back" size={23} />Quantidade de KM rodado:
                 </Text>
                 <TextInput
+                    inputMode="numeric"
                     onChangeText={text => setKm(text)}
                     style={styles.input}
                 />

@@ -14,34 +14,39 @@ export default props => {
     const [password, setPassword] = useState('');
 
     //criando funcção singIn = aguarda o retorno
-    singIn = async() => {
+    singIn = async () => {
 
-        api.post('/api/users',{
+        api.post('/api/users', {
             name, email, username, password
         })
 
-        .then(async(res) => {
-            Alert.alert("Sucesso!","Usuário cadastrado com sucesso")
-            props.navigation.navigate("Login");
-        })
+            .then(async (res) => {
+                Alert.alert("Sucesso!", "Usuário cadastrado com sucesso")
+                props.navigation.navigate("Login");
+            })
 
-        .catch (function (error) {
-  
-            let resposta = error.response.data.errors;
-            var erro = "";
-            
-            Object.keys(resposta).forEach(function(index){
-      
-              erro += " " + `${resposta[index]} \n`;
-      
+            .catch(function (error) {
+                if (error.response.data.errors) {
+                    let resposta = error.response.data.errors;
+                    var erro = "";
+
+                    Object.keys(resposta).forEach(function (index) {
+
+                        erro += " " + `${resposta[index]} \n`;
+
+                    });
+
+                    Alert.alert("ATENÇÃO","Username já utilizado!");
+                }
+                else{
+                    Alert.alert("Erro", erro);
+                }
+
+
             });
-
-            Alert.alert("Erro", erro);
-      
-        });
     }
 
-   
+
 
 
     return (
@@ -53,27 +58,31 @@ export default props => {
             </View>
 
             <View style={styles.col}>
-                
-                <TextInput 
-                    onChangeText={text=>setName(text)} 
-                    placeholder="Nome" 
-                    style={styles.input}/>
 
-                <TextInput 
-                    onChangeText={text=>setEmail(text)} 
-                    placeholder="E-mail" 
-                    style={styles.input}/>
+                <TextInput
+                    onChangeText={text => setName(text)}
+                    placeholder="Nome"
+                    maxLength={30}
+                    style={styles.input} />
 
-                <TextInput 
-                    onChangeText={text=>setUsername(text)} 
-                    placeholder="Username" 
-                    style={styles.input}/>
+                <TextInput
+                    onChangeText={text => setEmail(text)}
+                    placeholder="E-mail"
+                    maxLength={30}
+                    style={styles.input} />
 
-                <TextInput 
-                    onChangeText={text=>setPassword(text)} 
-                    placeholder="Password" 
+                <TextInput
+                    onChangeText={text => setUsername(text)}
+                    placeholder="Username"
+                    maxLength={15}
+                    style={styles.input} />
+
+                <TextInput
+                    onChangeText={text => setPassword(text)}
+                    placeholder="Password"
                     secureTextEntry={true}
-                    style={styles.input}/>
+                    maxLength={15}
+                    style={styles.input} />
 
 
                 <TouchableOpacity style={styles.button} onPress={this.singIn}>

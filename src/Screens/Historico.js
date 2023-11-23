@@ -17,7 +17,7 @@ export default props => {
     };
 
     const recarregar = useCallback(async () => {
-        
+
         setRefreshing(true);
 
         try {
@@ -41,7 +41,7 @@ export default props => {
             }
         };
 
-        fetchData(); 
+        fetchData();
 
     }, [recarregar]);
 
@@ -79,14 +79,18 @@ export default props => {
                     )}
                 />
 
+
                 <View style={styles.plus}>
                     <TouchableOpacity onPress={() => { props.navigation.navigate('Calcular') }}>
                         <MaterialCommunityIcons name="clipboard-plus" size={35} color={'#fff'} />
                     </TouchableOpacity>
                 </View>
+
             </View>
 
         </View>
+
+
     );
 }
 
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
     },
     plus: {
         width: '75%',
-        top: 50,
+        bottom: 50,
         position: 'relative',
         flexDirection: 'row',
         justifyContent: 'flex-end',

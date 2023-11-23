@@ -52,6 +52,15 @@ const Tabs = () => {
                 }}>
             </nav.Screen>
 
+            <nav.Screen name="Informativos" component={Informativos}
+                options={{
+                    tabBarLabel: 'Informativos',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="book-education-outline" color={color} size={35} />
+                    ),
+                }}>
+            </nav.Screen>
+
         </nav.Navigator>
     )
 

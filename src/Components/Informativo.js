@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-import { FlatList } from "react-native";
+import { Alert, FlatList } from "react-native";
 import { View } from "react-native";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
@@ -16,7 +16,7 @@ export default () => {
                 setInfo(response.data.data);
             }
             catch (error) {
-                //
+                Alert.alert("Erro", error)
             }
         };
         obterInformacao();

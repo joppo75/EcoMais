@@ -81,12 +81,14 @@ export default () => {
                         defaultValue={usuario.name}
                         onChangeText={text=>setName(text)}
                         placeholder="Nome"
+                         maxLength={30}
                         style={styles.input} />
 
                     <TextInput
                         defaultValue={usuario.email}
                         onChangeText={text=>setEmail(text)}
                         placeholder="E-mail"
+                        maxLength={30}
                         style={styles.input} />
 
                 </View>
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
     },
+
     conteudo: {
         flex: 1,
         alignItems: 'center',
@@ -117,24 +120,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#044929',
         borderRadius: 10,
     },
+
     h1: {
         fontSize: 30,
         color: '#FFF',
-    },
-    texto: {
-        fontSize: 18,
-        color: '#FFF',
-        marginTop: 5,
-        marginBottom: 1,
-    },
-
-    input: {
-        width: '100%',
-        height: 45,
-        backgroundColor: "#FFF",
-        borderRadius: 10,
-        marginTop: 5,
-        padding: 10
     },
 
     button: {
@@ -147,22 +136,26 @@ const styles = StyleSheet.create({
         marginTop: 25,
         marginBottom: 25
     },
+
     buttonText: {
         color: '#FFF',
         fontSize: 20
     },
+    
     titulo: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 50
+        marginBottom: 30
     },
+
     group: {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
 
     },
+
     input: {
         width: '80%',
         height: 45,

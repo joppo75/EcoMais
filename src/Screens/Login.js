@@ -1,51 +1,53 @@
 import { Text, View, StyleSheet, TouchableOpacity, Image, TextInput } from "react-native";
 import Arvore from "../../assets/Imagens/login.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../services/api";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default props => {
-   
+
     //variaveis de estado
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
 
     //função entrar
-    singIn = async() => {
+    singIn = async () => {
 
-        api.post('/api/login',{
+        api.post('/api/login', {
             username, password
         })
 
-        .then(async(res) => {
-            await AsyncStorage.setItem('token', res.data.token);
-            await AsyncStorage.setItem('usuario', JSON.stringify(res.data.usuario));
-            props.navigation.navigate("Tabs");
+            .then(async (res) => {
+                await AsyncStorage.setItem('token', res.data.token);
+                await AsyncStorage.setItem('usuario', JSON.stringify(res.data.usuario));
+                props.navigation.navigate("Tabs");
+                setUsername('');
+                setPassword('');
 
-        })
+            })
 
-        .catch (function (error) {
-            
-            if (error.response.data.errors){
-                let resposta = error.response.data.errors;
-                var erro = "";
-                
-                Object.keys(resposta).forEach(function(index){
-          
-                  erro += " " + `${resposta[index]} \n`;
-          
-                });
-                Alert.alert("Erro", erro);
-            }
-            else{
-                Alert.alert("Erro", "Usuário não encontrado!")
-            }
+            .catch(function (error) {
 
-        });
+                if (error.response.data.errors) {
+                    let resposta = error.response.data.errors;
+                    var erro = "";
+
+                    Object.keys(resposta).forEach(function (index) {
+
+                        erro += " " + `${resposta[index]} \n`;
+
+                    });
+                    Alert.alert("Erro", erro);
+                }
+                else {
+                    Alert.alert("Erro", "Usuário não encontrado!")
+                }
+
+            });
+
     }
-
 
 
     return (
@@ -56,14 +58,16 @@ export default props => {
             <View style={styles.col}>
 
                 <TextInput
-                    onChangeText={text=>setUsername(text)}
+                    onChangeText={text => setUsername(text)}
                     placeholder="Username"
+                    maxLength={15}
                     style={styles.input} />
 
                 <TextInput
-                    onChangeText={text=>setPassword(text)}
+                    onChangeText={text => setPassword(text)}
                     placeholder="Password"
-                    secureTextEntry={true} 
+                    secureTextEntry={true}
+                    maxLength={15}
                     style={styles.input} />
 
                 <TouchableOpacity style={styles.button} onPress={this.singIn}>

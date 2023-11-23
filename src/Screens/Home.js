@@ -4,9 +4,21 @@ import Perfil from "../Components/Perfil";
 import { Text } from "react-native";
 import Arvore from "../../assets/Imagens/login.png";
 import { Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default (props) => {
+
+
+    const navigation = useNavigation();
+
+    const handleLogout = async () => {
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('usuario');
+        navigation.navigate('Login');
+    };
+
 
     return (
         <View style={styles.container}>
@@ -35,6 +47,12 @@ export default (props) => {
                             <Text style={styles.texto}>Histórico</Text>
                         </TouchableOpacity>
                     </View>
+
+                    <View style={styles.sair}>
+                        <TouchableOpacity style={styles.texto} onPress={handleLogout}>
+                            <Text style={styles.texto}>Sair</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
             <Image source={Arvore} style={styles.img} />
@@ -55,9 +73,10 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         position: 'relative',
-        bottom: 100
+        bottom: 45,
     },
     quaCalc: {
+        width: '45%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 50,
@@ -65,26 +84,41 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF7000',
     },
     quaInfo: {
+        width: '46%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 40,
         borderRadius: 6,
         backgroundColor: '#05B047',
-        marginLeft: 10
+        marginLeft: 10,
     },
+
     quaHis: {
+        width: '45%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 50,
         borderRadius: 6,
         backgroundColor: '#CDD100',
-        marginTop: 10
+        marginTop: 10,
     },
+
+    sair: {
+        width: '45%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 50,
+        borderRadius: 6,
+        backgroundColor: '#DB1530',
+        marginTop: 10,
+        marginLeft: 10,
+    },
+
     texto: {
         color: '#fff',
         fontSize: 20,
         fontWeight: '900'
     },
 
-    
+
 })
